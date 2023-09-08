@@ -1,8 +1,16 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { getAllPosts } from '@/lib/notionAPI'
 import Head from 'next/head'
 
-// const inter = Inter({ subsets: ['latin'] })
+export const getStaticProps = async () => {
+  const allPosts = await getAllPosts();
+
+  return (
+    props: {
+      allPosts,
+    }.
+    revalidata: 60,
+  );
+};
 
 export default function Home() {
   return (
